@@ -37,3 +37,15 @@ def test_create_and_read_case_and_job(client):
     job_response = client.get(f"/jobs/{job_id}")
     assert job_response.status_code == 200
     assert job_response.json()["case_id"] == case_id
+
+
+def test_create_case_rejects_whitespace_only_input(client): #add by week03 assignment
+    response = client.post(
+        "/cases",
+        json={
+            "title": "   ",
+            "description": "     ",
+        },
+    )
+
+    assert response.status_code == 422
