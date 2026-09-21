@@ -13,6 +13,7 @@ class HealthResponse(BaseModel):
 
 
 class CaseCreate(BaseModel):
+    model_config = ConfigDict(str_strip_whitespace=True) #add by week03 assignment
     title: str = Field(min_length=3, max_length=200)
     description: str = Field(min_length=5, max_length=4000)
 
